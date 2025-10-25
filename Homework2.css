@@ -1,0 +1,43 @@
+ /* Global font and background */
+body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: #A5ACAF; /* Silver */
+    color: #002244; /* Cowboys Blue for text */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #002244; /* Cowboys Blue */
+    border-bottom: 2px solid #ccc;
+    color: white;
+}
+
+.header img {
+    max-width: 100px;
+}
+
+/* Main container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #A5ACAF; /* Silver */
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/*Error Messages */
+.error-message {
+  color: #C8102E; /* Bright red for strong contrast */
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-left: 8px;
+  display: inline-block;
+}

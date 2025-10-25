@@ -1,1 +1,293 @@
+<!DOCTYPE html>
+<!--
+Program name: hallmark-patient-form.html
+Author: John Hallmark
+Date created: 2025-09-08
+Date last edited: 2025-10-24
+Version: 2.1
+Description: A patient intake form for GreetingCard Medical, collecting personal, medical, and insurance information.
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>John Hallmark Homework 2</title>
+    <link rel="stylesheet" href="homework2.css">
+    <script src="homework2.js" defer></script>
+    <script src="states.js" defer></script>
+     
+</head>
+<body>
+    <div id="header">
+        <table width="100%">
+            <tr>
+                <td><img id="logo" src="logo.png" alt="GreetingCard Medical" width="150px"></td>
+                <td align="center"><h2>GreetingCard Medical</h2></td>
+                <td valign="bottom" align="right">Today's date: <span id="date-today"></span></td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+
+    <div id="body">
+        <p><span aria-hidden="true">*</span> indicates required field</p>
+
+        <form action="thankyou.html" method="get">
+            <table class="form">
+                <tr><th colspan="2">Patient Intake Form</th></tr>
+
+                <tr>
+                    <td align="right">
+    <label for="fname">First Name<span aria-hidden="true">*</span></label></label>
+    <label for="minitial">MI</label>
+    <label for="lname">Last Name<span aria-hidden="true">*</span></label></label>
+  </td>
+  <td>
+    <input type="text" id="fname" name="fname" maxlength="30"
+           pattern="^[A-Za-z'-]{1,30}$"
+           title="1–30 letters, apostrophes, and dashes only"
+           placeholder="John" required>
+    <span class="error-message" id="error-fname"></span>    
+
+    <input type="text" id="minitial" name="minitial" maxlength="1"
+           pattern="^[A-Za-z]?$"
+           title="Single letter only. Optional."
+           placeholder="A">
+
+    <input type="text" id="lname" name="lname" maxlength="30"
+           pattern="^[A-Za-z'2-5-]{1,30}$"
+           title="1–30 characters. Letters, apostrophes, dashes, and numbers 2–5 only"
+           placeholder="Hallmark" required>
+    <span class="error-message" id="error-lname"></span>
+  </td>
+                </tr>
+
+                <tr>
+                   <td align="right"><label for="DOB">Date of Birth<span aria-hidden="true">*</span></label></label></td>
+                   <td>
+                    <input type="date" id="DOB" name="DOB"
+                    title="Must be between 120 years ago and today"
+                    required>
+                    <span class="error-message" id="error-DOB"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><label for="ssn">Social Security Number<span aria-hidden="true">*</span></label></label></td>
+                    <td>
+                        <input type="password" id="ssn" name="ssn" maxlength="11"
+                        pattern="^\d{3}-\d{2}-\d{4}$"
+                        title="Format: 000-00-0000"
+                        placeholder="•••-••-••••">
+                        <span class="error-message" id="error-ssn"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><label>Gender</label></td>
+                    <td>
+                        <input type="radio" id="Male" name="Gender" value="Male"><label for="Male">Male</label>
+                        <input type="radio" id="Female" name="Gender" value="Female"><label for="Female">Female</label>
+                        <input type="radio" id="Other" name="Gender" value="Other"><label for="Other">Other</label>
+                    </td>
+                </tr>
+<!-- Address Line 1 -->
+                <tr>
+  <td align="right"><label for="AddressLine1">Address Line 1<span aria-hidden="true">*</span></label></label></td>
+  <td colspan="3">
+    <input type="text" id="AddressLine1" name="AddressLine1"
+           minlength="2" maxlength="30"
+           title="Required. 2–30 characters."
+           placeholder="3445 Main St." required>
+    <span class="error-message" id="error-AddressLine1"></span>
+  </td>
+</tr>
+<!-- Address Line 2 -->
+                <tr>
+  <td align="right"><label for="AddressLine2">Address Line 2</label></td>
+  <td colspan="3">
+    <input type="text" id="AddressLine2" name="AddressLine2"
+           minlength="2" maxlength="30"
+           title="Optional. 2–30 characters if entered."
+           placeholder="Apt #, Suite, etc">
+  </td>
+</tr>
+
+                <tr>
+  <td align="right">
+    <label for="City">City<span aria-hidden="true">*</span></label></label>
+    <label for="State">State<span aria-hidden="true">*</span></label></label>
+    <label for="ZipCode">Zip<span aria-hidden="true">*</span></label></label>
+  </td>
+  <td colspan="3">
+    <input type="text" id="City" name="City"
+           minlength="2" maxlength="30"
+           title="Required. 2–30 characters."
+           placeholder="Houston" required>
+    <span class="error-message" id="error-City"></span>
+
+    <select id="State" name="State" required title="Select your state">
+      <option value="">Select State</option>
+      <!-- Options will be populated dynamically by states.js -->
+    </select>
+    <span class="error-message" id="error-State"></span>
+
+    <input type="text" id="ZipCode" name="ZipCode"
+           maxlength="10"
+           pattern="^\d{5}(-\d{4})?$"
+           title="5-digit ZIP or ZIP+4 (e.g. 77002 or 77002-1234)"
+           placeholder="77002-1234" required>
+    <span class="error-message" id="error-ZipCode"></span>
+  </td>
+</tr>
+
+                <tr>
+                    <td align="right"><label for="EmailAddress">Email<span aria-hidden="true">*</span></label></label></td>
+                    <td><input type="email" id="EmailAddress" name="EmailAddress"
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                        title="Format: name@domain.tld"
+                        placeholder="GoCoogs@uh.edu" required>
+                        <span class="error-message" id="error-EmailAddress"></span>
+                        </td>
+                </tr>
+
+                <tr>
+                    <td align="right"><label for="phone">Phone</label></td>
+                    <td><input type="tel" id="phone" name="phone" maxlength="12"
+                    pattern="^\d{3}-\d{3}-\d{4}$"
+                    title="Format: 000-000-0000"
+                    placeholder="832-616-6764" required>
+                    <span class="error-message" id="error-phone"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right"><label for="textbox">Reason for Visit</label></td>
+                    <td><textarea id="textbox" name="textbox" rows="3" cols="50" maxlength="500"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td align="right">Medical History</td>
+                    <td>
+                        <input type="checkbox" id="Mumps" name="Mumps" value="Mumps"><label for="Mumps">Mumps</label><br>
+                        <input type="checkbox" id="Asthma" name="Asthma" value="Asthma"><label for="Asthma">Asthma</label><br>
+                        <input type="checkbox" id="WhoopingCough" name="WhoopingCough" value="Whooping Cough"><label for="WhoopingCough">Whooping Cough</label><br>
+                        <input type="checkbox" id="Diabetes" name="Diabetes" value="Diabetes"><label for="Diabetes">Diabetes</label><br>
+                        <input type="checkbox" id="Shingles" name="Shingles" value="Shingles"><label for="Shingles">Shingles</label><br>
+                        <input type="checkbox" id="HBP" name="HBP" value="HBP"><label for="HBP">High Blood Pressure</label>
+                    </td>
+                </tr>
+
+                <tr>
+    <td align="right" valign="top">
+        <label for="questions">Other Questions</label>
+    </td>
+    <td style="padding-top: 10px;">
+        <br>
+        <label>Are You Vaccinated?</label><br>
+        <input type="radio" name="vaccinated" value="Yes"><label>Y</label>
+        <input type="radio" name="vaccinated" value="No"><label>N</label><br><br>
+
+        <label>Do you have Insurance?</label><br>
+        <input type="radio" name="insurance" value="Yes"><label>Y</label>
+        <input type="radio" name="insurance" value="No"><label>N</label><br><br>
+
+        <label>Would you like to get a Flu Vaccine?</label><br>
+        <input type="radio" name="fluinfo" value="Yes"><label>Y</label>
+        <input type="radio" name="fluinfo" value="No"><label>N</label>
+    </td>
+</tr>
+
+<tr>
+  <td align="right">
+    <label for="PainScale">Pain Scale 1 to 10</label>
+  </td>
+  <td>
+    <input type="range" id="PainScale" name="PainScale" min="1" max="10" value="5"
+           title="Slide to select your current pain level from 1 (low) to 10 (severe)"
+           oninput="updatePain(this.value)">
+    <span id="painDisplay">5</span>
+  </td>
+</tr>
+
+    <td colspan="2" align="center">
+        <h4>Please create a UserID and Password</h4>
+    </td>
+</tr>
+<!-- Desired User ID -->
+<tr>
+  <td align="right"><label for="userID">Desired User ID<span aria-hidden="true">*</span></label></label></td>
+  <td colspan="3">
+    <input type="text" id="userID" name="userID"
+           minlength="5" maxlength="30"
+           pattern="^[A-Za-z][A-Za-z0-9_-]{4,29}$"
+           title="5–30 characters. Letters, numbers, underscore or dash. First character must be a letter. No spaces or special characters."
+           placeholder="Choose a username" required>
+    <span class="error-message" id="error-userID"></span>
+    
+  </td>
+</tr>
+
+<!-- Password -->
+<tr>
+  <td align="right"><label for="password">Password<span aria-hidden="true">*</span></label></label></td>
+  <td colspan="3">
+    <input type="password" id="password" name="password"
+           minlength="8" maxlength="30"
+           title="8–30 characters. Must include uppercase, lowercase, digit, and special character. No quotes."
+           placeholder="Enter password" required>
+    <span class="error-message" id="error-password"></span>       
+  </td>
+</tr>
+
+<!-- Confirm Password -->
+<tr>
+  <td align="right"><label for="confirmPassword">Re-enter Password <span aria-hidden="true">*</span></label></label></td>
+  <td colspan="3">
+    <input type="password" id="confirmPassword" name="confirmPassword"
+           minlength="8" maxlength="30"
+           title="Must match the password above."
+           placeholder="Confirm password" required>
+    <span class="error-message" id="error-confirmPassword"></span>       
+  </td>
+</tr>
+<tr><td colspan="2" style="height: 20px;"></td></tr>
+<tr>
+  <td colspan="2" align="center">
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset everything">
+    <button type="button" id="reviewBtn">Review</button>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <div id="reviewContent">
+      <h3>Review Your Information</h3>
+      <span id="reviewOutput"></span>
+    </div>
+  </td>
+</tr>
+            </table>
+        </form>
+    </div>
+
+    <hr>
+    <div id="footer" class="footer">
+    <table width="100%">
+        <tr>
+            <td align="left">
+                <img src="logo.png" alt="GreetingCard Medical Logo" style="max-width: 50px;">
+            </td>
+            <td align="center">
+                GreetingCard Medical<br>
+                1234 Main St<br>
+                Richmond, TX 77406
+            </td>
+            <td align="right">
+                <button onclick="window.location.href='contact.html'">Contact Us</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
+<!--- END OF HOMEWORK1 --->
+
 
